@@ -1,0 +1,23 @@
+# Python derleme ve cache dosyaları
+__pycache__/
+*.pyc
+
+# Sanal ortam klasörleri
+env/
+venv/
+.venv/
+.env
+anaconda3
+
+# Jupyter Notebook checkpointleri
+.ipynb_checkpoints
+
+# IDE Ayar dosyaları
+.vscode/
+.idea/
+
+# İşletim sistemi dosyaları
+.DS_Store
+
+# Veri seti
+# Loan.csv
