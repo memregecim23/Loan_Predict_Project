@@ -62,8 +62,10 @@ Bu projede, tabular verilerde en iyi performansı veren ve RandomizedSearchCV il
     accuracy                           0.95      6000
    macro avg       0.92      0.94      0.93      6000
 weighted avg       0.95      0.95      0.95      6000
+
 [[4289  233]
  [  88 1390]]
+ 
 0.9511666666666667
 
   Kütüphaneleri Yükleyin:
