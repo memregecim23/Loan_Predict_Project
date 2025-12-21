@@ -1,23 +1,27 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 
 # Sayfa Ayarları
 st.set_page_config(page_title="Banka Kredi Tahmin Sistemi", layout="wide")
 
 
 # Modeli Yükleme
-@st.cache_resource
-def load_model():
-    try:
-        model = joblib.load('loan_model.pkl')
-        return model
-    except Exception as e:
-        st.error(f"Model dosyası (loan_model.pkl) bulunamadı veya yüklenemedi: {e}")
-        return None
+try:
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    model_path = os.path.join(current_dir, 'loan_model.pkl')
 
+    model = joblib.load(model_path)
+    
+except FileNotFoundError:
+    st.error(f"HATA: Model dosyası bulunamadı! Aranan yol: {model_path}")
+    st.stop()
+except Exception as e:
+    st.error(f"HATA: Model yüklenirken bir sorun oluştu: {e}")
+    st.stop()
 
-model = load_model()
 
 # Başlık
 st.title("🏦 Banka Kredi Değerlendirme Sistemi")
