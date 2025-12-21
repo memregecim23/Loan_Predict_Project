@@ -9,6 +9,8 @@ dfloan.info()
 dfloan.describe()
 dfloan.isnull().sum()
 
+# Yıl,ay ve gün sütunları modelin okuyabileceği format olan int32'ye dönüştürüldü.
+
 dfloan["year"] = pd.to_datetime(dfloan["ApplicationDate"]).dt.year
 dfloan["month"] = pd.to_datetime(dfloan["ApplicationDate"]).dt.month
 dfloan["day"] = pd.to_datetime(dfloan["ApplicationDate"]).dt.day
@@ -22,8 +24,11 @@ dfloan["MaritalStatus"].value_counts()  # 4 adet unique değer one-hot encoder
 dfloan["HomeOwnershipStatus"].value_counts() # 4 adet unique değer ordinal encoder
 dfloan["LoanPurpose"].value_counts() # 5 adet unique değer one-hot encoder
 
+# One-hot encoding yapıldı.
 dfencoded = pd.get_dummies(dfloan,columns=["LoanPurpose","EmploymentStatus","MaritalStatus"])
 dfencoded.info()
+
+# Hiyerarşik üstünlüğü bulunan kolonlara ordinal encoding uygulandı.
 
 dfloan["EducationLevel"].value_counts()
 from sklearn.preprocessing import OrdinalEncoder
@@ -42,6 +47,8 @@ dfencoded.drop("HomeOwnershipStatus", axis=1, inplace=True)
 dfencoded.info()
 dfencoded.describe()
 dfencoded.corr()["LoanApproved"].sort_values()
+
+#kolerasyonu düşük olan sütunlar ve Target değişkeni %80 etkileyerek sapmaya sebep olan RiskScore sütunları model sağlığı için drop edildi.
 
 drop_list = [
     "EmploymentStatus_Unemployed",
@@ -75,6 +82,9 @@ drop_list = [
     "RiskScore"
 ]
 existing_drop_list = [col for col in drop_list if col in dfencoded.columns]
+
+# Model oluşturma , Hiperparametre optimizasyonu ve performans incelemeleri yapıldı.
+
 X = dfencoded.drop(existing_drop_list, axis=1)
 
 y = dfencoded["LoanApproved"]
@@ -121,6 +131,7 @@ print(report)
 print(matrix)
 print(accuracygrid)
 
+# Model pkl dosyası olarak kaydedildi.
 model = grid.best_estimator_
 
 import joblib
