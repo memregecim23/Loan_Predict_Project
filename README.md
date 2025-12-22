@@ -1,3 +1,11 @@
+<img width="1621" height="760" alt="image" src="https://github.com/user-attachments/assets/8f92cc40-2c19-4578-b2b8-26a46fa0154f" />
+<img width="1487" height="717" alt="image" src="https://github.com/user-attachments/assets/87b9e978-afc9-408d-abe0-76bc3f0bbabb" />
+<img width="1831" height="711" alt="image" src="https://github.com/user-attachments/assets/22d25c7e-d6c3-4bf3-9050-6313b34ad8b4" />
+
+Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link aynı zamanda about kısmında da bulunmaktadır.
+
+https://loanpredictproject.streamlit.app/
+
 **Bank Loan Approval Prediction System**
 Bu proje, bankacılık sektöründe kredi riskini minimize etmek, batık kredileri (default) önlemek ve kredi onay süreçlerini saniyeler seviyesine indirmek amacıyla geliştirilmiş 
 yüksek performanslı bir yapay zeka uygulamasıdır.
