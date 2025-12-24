@@ -64,17 +64,26 @@ Bu projede, tabular verilerde en iyi performansı veren ve RandomizedSearchCV il
 - Optimizasyon: RandomizedSearchCV kullanılarak n_estimators, learning_rate ve max_depth gibi parametreler optimize edilmiştir.
 - Dengesiz Veri Yönetimi: is_unbalance=True parametresi ile kredi onay/red oranlarındaki dengesizlik (Class Imbalance) yönetilmiştir.
 
-              precision    recall  f1-score   support
-           0       0.98      0.95      0.96      4522
-           1       0.86      0.94      0.90      1478
-    accuracy                           0.95      6000
-   macro avg       0.92      0.94      0.93      6000
-weighted avg       0.95      0.95      0.95      6000
+### Model Performans Sonuçları
 
-[[4289  233]
- [  88 1390]]
- 
-0.9511666666666667
+Yapılan iyileştirmeler ve hiperparametre optimizasyonu sonucunda modelin başarısı **%95** seviyesine ulaşmıştır.
+
+#### 1. Confusion Matrix
+| Gerçek \ Tahmin | 0 (Negatif) | 1 (Pozitif) |
+| :--- | :---: | :---: |
+| **0** | 4289 | 233 |
+| **1** | 88 | 1390 |
+
+#### 2. Sınıflandırma Raporu
+| Class | Precision | Recall | F1-Score | Support |
+| :--- | :---: | :---: | :---: | :---: |
+| **0** | 0.98 | 0.95 | 0.96 | 4522 |
+| **1** | 0.86 | 0.94 | 0.90 | 1478 |
+| **Accuracy** | | | **0.95** | **6000** |
+| **Macro Avg** | 0.92 | 0.94 | 0.93 | 6000 |
+| **Weighted Avg**| 0.95 | 0.95 | 0.95 | 6000 |
+
+**Genel Doğruluk (Accuracy):** `%95.11`
 
   Kütüphaneleri Yükleyin:
 **pip install -r requirements.txt**
