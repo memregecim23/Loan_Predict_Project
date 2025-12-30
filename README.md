@@ -6,63 +6,75 @@ Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link ay
 
 https://loanpredictproject.streamlit.app/
 
-**Bank Loan Approval Prediction System**
-Bu proje, bankacılık sektöründe kredi riskini minimize etmek, batık kredileri (default) önlemek ve kredi onay süreçlerini saniyeler seviyesine indirmek amacıyla geliştirilmiş 
-yüksek performanslı bir yapay zeka uygulamasıdır.
+# 🏦 Bank Loan Approval Prediction System (Kredi Onay Tahmin Sistemi)
 
-**İş Problemi ve Veri Seti Hikayesi**
-Bankalar için en büyük finansal risk, krediyi geri ödeyemeyecek müşterilere onay vermektir. Geleneksel yöntemlerde kredi memurları onlarca parametreyi manuel inceler, 
-bu da süreci yavaşlatır ve insan hatasına açık hale getirir.
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Library](https://img.shields.io/badge/Library-LightGBM-green)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 
-Bu projede kullanılan veri seti, 36 farklı finansal ve demografik değişkeni içerir. Modelimiz, müşterinin sadece gelirine değil; borç oranına (DTI),
-harcama alışkanlıklarına, varlıklarına ve geçmiş ödeme performansına bakarak karmaşık bir risk analizi yapar.
+## 📖 Proje Özeti
+Bu proje, bankacılık sektöründe kredi riskini minimize etmek, batık kredileri (default) önlemek ve kredi onay süreçlerini saniyeler seviyesine indirmek amacıyla geliştirilmiş yüksek performanslı bir yapay zeka uygulamasıdır. 
 
-**Değişken Açıklamaları**
-Modelin karar verirken kullandığı parametreler ve anlamları aşağıdadır;
-Değişken Adı,Veri Tipi,Açıklama
-ApplicationDate,Object,Kredi başvurusunun yapıldığı tarih (Yıl/Ay/Gün olarak işlenmiştir).
-Age,Integer,Müşterinin yaşı.
-AnnualIncome,Integer,Yıllık toplam gelir.
-CreditScore,Integer,Kredi notu (Fico Score). Finansal güvenilirlik puanı.
-EmploymentStatus,Object,"İstihdam durumu (Employed, Self-Employed, Unemployed vb.)."
-EducationLevel,Object,"Eğitim seviyesi (Lise, Lisans, Yüksek Lisans, Doktora)."
-Experience,Integer,Toplam iş deneyimi (Yıl).
-LoanAmount,Integer,Bankadan talep edilen kredi miktarı.
-LoanDuration,Integer,Kredinin geri ödeme vadesi (Ay).
-MaritalStatus,Object,Medeni durum.
-NumberOfDependents,Integer,Bakmakla yükümlü olunan kişi sayısı.
-HomeOwnershipStatus,Object,"Ev sahipliği durumu (Kira, Mortgage, Kendi Evi)."
-MonthlyDebtPayments,Integer,Müşterinin halihazırda ödediği aylık borç miktarı.
-CreditCardUtilizationRate,Float,Kredi kartı limit kullanım oranı (%0 - %100).
-NumberOfOpenCreditLines,Integer,Aktif açık kredi hesabı sayısı.
-NumberOfCreditInquiries,Integer,Son dönemde yapılan kredi sorgulama sayısı.
-DebtToIncomeRatio (DTI),Float,Kritik Metrik: Toplam Borç / Brüt Gelir oranı.
-BankruptcyHistory,Integer,"Geçmişte iflas durumu var mı? (1: Evet, 0: Hayır)."
-LoanPurpose,Object,"Kredinin kullanım amacı (Eğitim, Araba, Ev, Borç Kapama)."
-PreviousLoanDefaults,Integer,"Daha önce batık kredisi var mı? (1: Evet, 0: Hayır)."
-PaymentHistory,Integer,Ödeme performans puanı.
-LengthOfCreditHistory,Integer,Kredi geçmişinin uzunluğu (Yıl).
-SavingsAccountBalance,Integer,Tasarruf hesabındaki bakiye.
-CheckingAccountBalance,Integer,Vadesiz hesaptaki bakiye.
-TotalAssets,Integer,Toplam varlıklar (Menkul + Gayrimenkul).
-TotalLiabilities,Integer,Toplam yükümlülükler (Borçlar).
-MonthlyIncome,Float,Aylık net gelir.
-UtilityBillsPaymentHistory,Float,Faturaları zamanında ödeme oranı.
-JobTenure,Integer,Mevcut işteki çalışma süresi (Yıl).
-NetWorth,Integer,Net servet (Varlıklar - Borçlar).
-BaseInterestRate,Float,Piyasa baz faiz oranı.
-InterestRate,Float,Müşteriye uygulanan faiz oranı.
-MonthlyLoanPayment,Float,Bu kredi için hesaplanan aylık taksit.
-TotalDebtToIncomeRatio,Float,Tüm borçların gelire oranı.
-RiskScore,Float,Banka içi hesaplanan risk skoru.
-LoanApproved,Integer,"HEDEF DEĞİŞKEN: Kredi Onaylandı mı? (1: Onay, 0: Red)."
+Model, 36 farklı finansal ve demografik değişkeni analiz ederek müşterinin risk profilini çıkarır ve kredi onayı için karar desteği sunar.
 
+## 🎯 İş Problemi
+Bankalar için en büyük finansal risk, krediyi geri ödeyemeyecek müşterilere onay vermektir. Geleneksel yöntemlerde:
+* Kredi memurları onlarca parametreyi manuel inceler.
+* Süreç yavaştır ve maliyetlidir.
+* İnsan hatasına ve subjektif kararlara açıktır.
 
-**Model Mimarisi**
-Bu projede, tabular verilerde en iyi performansı veren ve RandomizedSearchCV ile hiperparametreleri optimize edilmiş LightGBM (LGBMClassifier) kullanılmıştır.
-- Algoritma: LightGBM (Gradient Boosting Framework)
-- Optimizasyon: RandomizedSearchCV kullanılarak n_estimators, learning_rate ve max_depth gibi parametreler optimize edilmiştir.
-- Dengesiz Veri Yönetimi: is_unbalance=True parametresi ile kredi onay/red oranlarındaki dengesizlik (Class Imbalance) yönetilmiştir.
+**Çözüm:** Müşterinin sadece gelirine değil; borç oranına (DTI), harcama alışkanlıklarına, varlıklarına ve geçmiş ödeme performansına bakarak karmaşık bir risk analizi yapan otomatik bir model geliştirmek.
+
+## 📊 Veri Seti Hikayesi ve Değişkenler
+Veri seti, finansal geçmişi ve demografik bilgileri içeren **36 değişkenden** oluşmaktadır.
+
+| Değişken Adı | Veri Tipi | Açıklama |
+| :--- | :--- | :--- |
+| **LoanApproved** | Integer | **HEDEF DEĞİŞKEN:** Kredi Onaylandı mı? (1: Onay, 0: Red) |
+| `ApplicationDate` | Object | Başvuru tarihi (Yıl/Ay/Gün). |
+| `Age` | Integer | Müşterinin yaşı. |
+| `AnnualIncome` | Integer | Yıllık toplam gelir. |
+| `CreditScore` | Integer | Kredi notu (Fico Score). |
+| `EmploymentStatus` | Object | İstihdam durumu (Employed, Self-Employed vb.). |
+| `EducationLevel` | Object | Eğitim seviyesi. |
+| `Experience` | Integer | Toplam iş deneyimi (Yıl). |
+| `LoanAmount` | Integer | Talep edilen kredi miktarı. |
+| `LoanDuration` | Integer | Geri ödeme vadesi (Ay). |
+| `MaritalStatus` | Object | Medeni durum. |
+| `NumberOfDependents` | Integer | Bakmakla yükümlü olunan kişi sayısı. |
+| `HomeOwnershipStatus` | Object | Ev sahipliği durumu. |
+| `MonthlyDebtPayments` | Integer | Halihazırda ödenen aylık borç miktarı. |
+| `CreditCardUtilizationRate` | Float | Kredi kartı limit kullanım oranı. |
+| `NumberOfOpenCreditLines` | Integer | Aktif açık kredi hesabı sayısı. |
+| `NumberOfCreditInquiries` | Integer | Son dönemde yapılan kredi sorgulama sayısı. |
+| `DebtToIncomeRatio (DTI)` | Float | **Kritik Metrik:** Toplam Borç / Brüt Gelir oranı. |
+| `BankruptcyHistory` | Integer | Geçmişte iflas durumu (1: Evet, 0: Hayır). |
+| `LoanPurpose` | Object | Kredinin kullanım amacı. |
+| `PreviousLoanDefaults` | Integer | Daha önce batık kredisi var mı? |
+| `PaymentHistory` | Integer | Ödeme performans puanı. |
+| `LengthOfCreditHistory` | Integer | Kredi geçmişinin uzunluğu (Yıl). |
+| `SavingsAccountBalance` | Integer | Tasarruf hesabındaki bakiye. |
+| `CheckingAccountBalance` | Integer | Vadesiz hesaptaki bakiye. |
+| `TotalAssets` | Integer | Toplam varlıklar. |
+| `TotalLiabilities` | Integer | Toplam yükümlülükler. |
+| `MonthlyIncome` | Float | Aylık net gelir. |
+| `UtilityBillsPaymentHistory` | Float | Faturaları zamanında ödeme oranı. |
+| `JobTenure` | Integer | Mevcut işteki çalışma süresi (Yıl). |
+| `NetWorth` | Integer | Net servet (Varlıklar - Borçlar). |
+| `BaseInterestRate` | Float | Piyasa baz faiz oranı. |
+| `InterestRate` | Float | Müşteriye uygulanan faiz oranı. |
+| `MonthlyLoanPayment` | Float | Hesaplanan aylık taksit. |
+| `TotalDebtToIncomeRatio` | Float | Tüm borçların gelire oranı. |
+| `RiskScore` | Float | Banka içi hesaplanan risk skoru. |
+
+## 🧠 Model Mimarisi
+Projede, tabular (tablo yapısındaki) verilerde en yüksek performansı gösteren Gradient Boosting algoritmalarından **LightGBM** tercih edilmiştir.
+
+* **Algoritma:** LightGBM (LGBMClassifier)
+* **Optimizasyon:** `RandomizedSearchCV` kullanılarak hiperparametre optimizasyonu yapılmıştır.
+    * *Optimize edilen parametreler:* `n_estimators`, `learning_rate`, `max_depth`.
+* **Dengesiz Veri (Imbalance) Yönetimi:** Finansal verilerde "Red" durumu genelde "Onay" durumundan daha az (veya tam tersi) olabilir. Modelin yanılmaması için `is_unbalance=True` parametresi ile sınıf dengesizliği yönetilmiştir.
+
 
 ### Model Performans Sonuçları
 
