@@ -2,7 +2,7 @@
 <img width="1487" height="717" alt="image" src="https://github.com/user-attachments/assets/87b9e978-afc9-408d-abe0-76bc3f0bbabb" />
 <img width="1831" height="711" alt="image" src="https://github.com/user-attachments/assets/22d25c7e-d6c3-4bf3-9050-6313b34ad8b4" />
 
-Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link aynı zamanda about kısmında da bulunmaktadır.Uygulama için gerekli olan csv dosyası repodadır.
+Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link aynı zamanda about kısmında da bulunmaktadır.
 
 https://loanpredictproject.streamlit.app/
 
