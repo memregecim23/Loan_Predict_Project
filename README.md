@@ -6,18 +6,18 @@ Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link ay
 
 https://loanpredictproject.streamlit.app/
 
-# 🏦 Bank Loan Approval Prediction System (Kredi Onay Tahmin Sistemi)
+# Bank Loan Approval Prediction System (Kredi Onay Tahmin Sistemi)
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![Library](https://img.shields.io/badge/Library-LightGBM-green)
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 
-## 📖 Proje Özeti
+## Proje Özeti
 Bu proje, bankacılık sektöründe kredi riskini minimize etmek, batık kredileri (default) önlemek ve kredi onay süreçlerini saniyeler seviyesine indirmek amacıyla geliştirilmiş yüksek performanslı bir yapay zeka uygulamasıdır. 
 
 Model, 36 farklı finansal ve demografik değişkeni analiz ederek müşterinin risk profilini çıkarır ve kredi onayı için karar desteği sunar.
 
-## 🎯 İş Problemi
+## İş Problemi
 Bankalar için en büyük finansal risk, krediyi geri ödeyemeyecek müşterilere onay vermektir. Geleneksel yöntemlerde:
 * Kredi memurları onlarca parametreyi manuel inceler.
 * Süreç yavaştır ve maliyetlidir.
@@ -25,7 +25,7 @@ Bankalar için en büyük finansal risk, krediyi geri ödeyemeyecek müşteriler
 
 **Çözüm:** Müşterinin sadece gelirine değil; borç oranına (DTI), harcama alışkanlıklarına, varlıklarına ve geçmiş ödeme performansına bakarak karmaşık bir risk analizi yapan otomatik bir model geliştirmek.
 
-## 📊 Veri Seti Hikayesi ve Değişkenler
+## Veri Seti Hikayesi ve Değişkenler
 Veri seti, finansal geçmişi ve demografik bilgileri içeren **36 değişkenden** oluşmaktadır.
 
 | Değişken Adı | Veri Tipi | Açıklama |
@@ -67,7 +67,7 @@ Veri seti, finansal geçmişi ve demografik bilgileri içeren **36 değişkenden
 | `TotalDebtToIncomeRatio` | Float | Tüm borçların gelire oranı. |
 | `RiskScore` | Float | Banka içi hesaplanan risk skoru. |
 
-## 🧠 Model Mimarisi
+## Model Mimarisi
 Projede, tabular (tablo yapısındaki) verilerde en yüksek performansı gösteren Gradient Boosting algoritmalarından **LightGBM** tercih edilmiştir.
 
 * **Algoritma:** LightGBM (LGBMClassifier)
