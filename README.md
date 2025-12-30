@@ -6,10 +6,11 @@ Not:Aşağıdaki linke tıklayarak canlı olarak demoyu deneyebilirsiniz.Link ay
 
 https://loanpredictproject.streamlit.app/
 
-# Bank Loan Approval Prediction System (Kredi Onay Tahmin Sistemi)
+# Bank Loan Approval Prediction System
 
 ![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
 ![Library](https://img.shields.io/badge/Library-LightGBM-green)
+![Framework](https://img.shields.io/badge/Framework-Streamlit-red)
 ![Status](https://img.shields.io/badge/Status-Completed-success)
 
 ## Proje Özeti
@@ -68,25 +69,23 @@ Veri seti, finansal geçmişi ve demografik bilgileri içeren **36 değişkenden
 | `RiskScore` | Float | Banka içi hesaplanan risk skoru. |
 
 ## Model Mimarisi
-Projede, tabular (tablo yapısındaki) verilerde en yüksek performansı gösteren Gradient Boosting algoritmalarından **LightGBM** tercih edilmiştir.
+Projede, tabular verilerde en yüksek performansı gösteren Gradient Boosting algoritmalarından **LightGBM** tercih edilmiştir.
 
 * **Algoritma:** LightGBM (LGBMClassifier)
 * **Optimizasyon:** `RandomizedSearchCV` kullanılarak hiperparametre optimizasyonu yapılmıştır.
     * *Optimize edilen parametreler:* `n_estimators`, `learning_rate`, `max_depth`.
-* **Dengesiz Veri (Imbalance) Yönetimi:** Finansal verilerde "Red" durumu genelde "Onay" durumundan daha az (veya tam tersi) olabilir. Modelin yanılmaması için `is_unbalance=True` parametresi ile sınıf dengesizliği yönetilmiştir.
+* **Dengesiz Veri Yönetimi:** Finansal verilerde sınıf dengesizliğini yönetmek için `is_unbalance=True` parametresi kullanılmıştır.
 
+## Model Performansı
+Yapılan iyileştirmeler ve hiperparametre optimizasyonu sonucunda modelin genel başarısı **%95.11** seviyesine ulaşmıştır.
 
-### Model Performans Sonuçları
-
-Yapılan iyileştirmeler ve hiperparametre optimizasyonu sonucunda modelin başarısı **%95** seviyesine ulaşmıştır.
-
-#### 1. Confusion Matrix
-| Gerçek \ Tahmin | 0 (Negatif) | 1 (Pozitif) |
+### 1. Confusion Matrix (Karmaşıklık Matrisi)
+| Gerçek \ Tahmin | 0 (Negatif - Red) | 1 (Pozitif - Onay) |
 | :--- | :---: | :---: |
 | **0** | 4289 | 233 |
 | **1** | 88 | 1390 |
 
-#### 2. Sınıflandırma Raporu
+### 2. Sınıflandırma Raporu (Classification Report)
 | Class | Precision | Recall | F1-Score | Support |
 | :--- | :---: | :---: | :---: | :---: |
 | **0** | 0.98 | 0.95 | 0.96 | 4522 |
@@ -95,12 +94,23 @@ Yapılan iyileştirmeler ve hiperparametre optimizasyonu sonucunda modelin başa
 | **Macro Avg** | 0.92 | 0.94 | 0.93 | 6000 |
 | **Weighted Avg**| 0.95 | 0.95 | 0.95 | 6000 |
 
-**Genel Doğruluk (Accuracy):** `%95.11`
+> **Genel Doğruluk (Accuracy):** `%95.11`
 
-  Kütüphaneleri Yükleyin:
-**pip install -r requirements.txt**
-Uygulamayı Başlatın: Terminali (veya CMD'yi) proje klasöründe açın ve şu kodu çalıştırın:
-**streamlit run app2.py**
-(Tarayıcınızda otomatik olarak interaktif arayüz açılacaktır.)
+## Kurulum ve Kullanım
 
-Geliştirici:Mustafa Emre Geçim
+Projeyi yerel ortamınızda çalıştırmak ve arayüzü görmek için:
+
+1.  **Gerekli Kütüphaneleri Yükleyin:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+2.  **Uygulamayı Başlatın:**
+    Terminali proje klasöründe açın ve Streamlit arayüzünü başlatın:
+    ```bash
+    streamlit run app2.py
+    ```
+    *(Tarayıcınızda otomatik olarak interaktif arayüz açılacaktır.)*
+
+---
+*Geliştirici: **Mustafa Emre Geçim***
